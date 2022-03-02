@@ -75,13 +75,14 @@ const showDetails = (data) => {
     const div = document.createElement("div");
         div.classList.add("col");
         div.innerHTML = `
-        <div class="border border-success border-1 p-3">
+        <div class="justify-content-center border border-success border-1 p-3">
             <div>
                 <h3 class="bg-success text-white text-center text-success">${data.data.name}</h3>
             </div>
-        <div class="d-flex ms-5 me-5 mt-5 mb-5">
-          <div class="me-5"><img src="${data.data.image}" height = "300px" width = "1000px" class="card-img-top" alt="..."></div>
-             <div class="ms-5">
+        <div class="ms-5 me-5 mt-5 mb-5">
+          <div class="me-5"><img src="${data.data.image}" height = "300px" width = "1000px" class="mx-auto card-img-top" alt="...">
+          </div>
+          <div class="pt-5 ps-5">
                 <h5>Release Date: </h5>
                 <p class="card-text">${data.data.releaseDate ? data.data.releaseDate: "Not available"}</p>
                 <h5>Main Features: </h5>
@@ -89,7 +90,17 @@ const showDetails = (data) => {
                 <p class="card-text"><h6 class="bolder">Display Size: </h6>${data.data.mainFeatures.displaySize}</p>
                 <p class="card-text"><h6 class="bolder">Memory: </h6>${data.data.mainFeatures.memory}</p>
                 <p class="card-text"><h6 class="bolder">Storage </h6>${data.data.mainFeatures.storage}</p>
-             </div>
+                <p class="card-text"><h6 class="bolder">Sensors </h6>${data.data.mainFeatures.sensors.join(" ")}</p>
+          </div> 
+          <div class = "pt-5 ps-5">
+                <h5>Others: </h5>
+                <p class="card-text"><h6 class="bolder">Bluetooth: </h6>${data.data.others.Bluetooth}</p>
+                <p class="card-text"><h6 class="bolder">GPS: </h6>${data.data.others.GPS}</p>
+                <p class="card-text"><h6 class="bolder">NFC: </h6>${data.data.others.NFC}</p>
+                <p class="card-text"><h6 class="bolder">Radio: </h6>${data.data.others.Radio}</p>
+                <p class="card-text"><h6 class="bolder">USB: </h6>${data.data.others.USB}</p>
+                <p class="card-text"><h6 class="bolder">WLAN: </h6>${data.data.others.WLAN}</p>
+           </div> 
          </div>
         </div>
         `

@@ -9,7 +9,7 @@ const searchButton = () => {
         error.innerHTML = "";
         fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
         .then (res => res.json())
-        .then (data => displayPhone(data.data))
+        .then (data => checkStatus(data))
     }
     else if (inputValue == "") {
         error.innerText = "Please try again.";
@@ -19,7 +19,18 @@ const searchButton = () => {
         error.innerText = "Do not enter a number.";
         phoneSearch.innerHTML = "";
     }
-   
+}
+
+const checkStatus = (data) => {
+    const phoneSearch = document.getElementById("phone-search-result");
+    const error = document.getElementById("error");
+    if (data.status == true) {
+        displayPhone(data.data);
+    }
+    else {
+        phoneSearch.innerHTML = "";
+        error.innerText = "Phone not found";
+    }
 }
 
 const displayPhone = phones => {
@@ -59,13 +70,14 @@ const showDetails = (data) => {
         const div = document.createElement("div");
         div.classList.add("col");
         div.innerHTML = `
-        <div class="border border-success border-1 p-4 ">
+        <div class="border border-success border-1 p-3">
             <div>
-                <h3>${data.data.name}</h3>
+                <h3 class="text-center text-success">${data.data.name}</h3>
             </div>
         <div class="d-flex ms-5 me-5 mt-5 mb-5">
           <div class="me-5"><img src="${data.data.image}" height = "300px" width = "800px" class="card-img-top" alt="..."></div>
              <div class="ms-5">
+                 <h5>Release Date: </h5>
                  <p class="card-text">${data.data.releaseDate}</p>
                  <p class="card-text">${data.data.storage}</p>
              </div>

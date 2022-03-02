@@ -94,12 +94,12 @@ const showDetails = (data) => {
           </div> 
           <div class = "pt-5 ps-5">
                 <h5>Others: </h5>
-                <p class="card-text"><h6 class="bolder">Bluetooth: </h6>${data.data.others.Bluetooth}</p>
-                <p class="card-text"><h6 class="bolder">GPS: </h6>${data.data.others.GPS}</p>
-                <p class="card-text"><h6 class="bolder">NFC: </h6>${data.data.others.NFC}</p>
-                <p class="card-text"><h6 class="bolder">Radio: </h6>${data.data.others.Radio}</p>
-                <p class="card-text"><h6 class="bolder">USB: </h6>${data.data.others.USB}</p>
-                <p class="card-text"><h6 class="bolder">WLAN: </h6>${data.data.others.WLAN}</p>
+                <p class="card-text">${data.data.others?.Bluetooth ? data.data.others?.Bluetooth: "Not available"}</p>
+                <p class="card-text"><h6 class="bolder">GPS: </h6>${data.data?.GPS ? data.data.others?.GPS: "Not available"}</p>
+                <p class="card-text"><h6 class="bolder">NFC: </h6>${data.data.others?.NFC ? data.data.others?.NFC: "Not available"}</p>
+                <p class="card-text"><h6 class="bolder">Radio: </h6>${data.data.others?.Radio ? data.data.others?.Radio: "Not available"}</p>
+                <p class="card-text"><h6 class="bolder">USB: </h6>${data.data.others?.USB ? data.data.others?.USB: "Not available"}</p>
+                <p class="card-text"><h6 class="bolder">WLAN: </h6>${data.data.others?.WLAN ? data.data.others?.WLAN: "Not available"}</p>
            </div> 
          </div>
         </div>

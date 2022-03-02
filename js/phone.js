@@ -1,6 +1,7 @@
 const searchButton = () => {
     const input = document.getElementById("input-value");
     const phoneSearch = document.getElementById("phone-search-result");
+    const showDetails = document.getElementById("show-details");
     const error = document.getElementById("error");
     const inputValue = input.value;
     input.value = "";
@@ -12,12 +13,14 @@ const searchButton = () => {
         .then (data => checkStatus(data))
     }
     else if (inputValue == "") {
-        error.innerText = "Please try again.";
+        showDetails.innerHTML = "";
         phoneSearch.innerHTML = "";
+        error.innerText = "Please try again.";
     }
     else {
-        error.innerText = "Do not enter a number.";
+        showDetails.innerHTML = "";
         phoneSearch.innerHTML = "";
+        error.innerText = "Do not enter a number.";
     }
 }
 
@@ -35,6 +38,9 @@ const checkStatus = (data) => {
 
 const displayPhone = phones => {
     const phoneSearch = document.getElementById("phone-search-result");
+    const showDetails = document.getElementById("show-details");
+    showDetails.innerHTML = "";
+    phoneSearch.innerHTML = "";
     const first20Phones = phones.slice(0,20);
     first20Phones.forEach(phone => {
         console.log(phone);
@@ -63,30 +69,31 @@ const exploreDetails = (info) => {
 }
 
 const showDetails = (data) => {
+    console.log(data);
     const showDetails = document.getElementById("show-details");
-    // const first20Phones = phones.slice(0,20);
-    // first20Phones.forEach(phone => {
-    //     console.log(phone);
-        const div = document.createElement("div");
+    showDetails.innerHTML = "";
+    const div = document.createElement("div");
         div.classList.add("col");
         div.innerHTML = `
         <div class="border border-success border-1 p-3">
             <div>
-                <h3 class="text-center text-success">${data.data.name}</h3>
+                <h3 class="bg-success text-white text-center text-success">${data.data.name}</h3>
             </div>
         <div class="d-flex ms-5 me-5 mt-5 mb-5">
-          <div class="me-5"><img src="${data.data.image}" height = "300px" width = "800px" class="card-img-top" alt="..."></div>
+          <div class="me-5"><img src="${data.data.image}" height = "300px" width = "1000px" class="card-img-top" alt="..."></div>
              <div class="ms-5">
-                 <h5>Release Date: </h5>
-                 <p class="card-text">${data.data.releaseDate}</p>
-                 <p class="card-text">${data.data.storage}</p>
+                <h5>Release Date: </h5>
+                <p class="card-text">${data.data.releaseDate ? data.data.releaseDate: "Not available"}</p>
+                <h5>Main Features: </h5>
+                <p class="card-text"><h6 class="bolder">Chip Set: </h6>${data.data.mainFeatures.chipSet}</p>
+                <p class="card-text"><h6 class="bolder">Display Size: </h6>${data.data.mainFeatures.displaySize}</p>
+                <p class="card-text"><h6 class="bolder">Memory: </h6>${data.data.mainFeatures.memory}</p>
+                <p class="card-text"><h6 class="bolder">Storage </h6>${data.data.mainFeatures.storage}</p>
              </div>
          </div>
         </div>
-       
         `
         showDetails.appendChild(div);
-
 }
 
 
